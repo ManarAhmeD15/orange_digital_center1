@@ -22,9 +22,11 @@ class LecturesScreen extends StatelessWidget {
   builder: (context, state) {
 
     //  OBJECT
-    LectureCubit myCubit =LectureCubit.get(context);
+    LectureCubit lectureCubit =LectureCubit.get(context);
     return MaterialApp(
-        home: Scaffold(
+      debugShowCheckedModeBanner: false,
+
+      home: Scaffold(
           appBar: customAppBar('Lectures',
             context,
             pop1: "All Lectures",
@@ -34,16 +36,16 @@ class LecturesScreen extends StatelessWidget {
           body:
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
-            child: myCubit.modelData ==null ? Center(child: CircularProgressIndicator()) :
+            child: lectureCubit.modelData ==null ? Center(child: CircularProgressIndicator()) :
             ListView.builder(
-                itemCount: myCubit.modelData!.data!.length,
+                itemCount: lectureCubit.modelData!.data!.length,
                 itemBuilder: (context,index) {
 
                   return cardItem(
-                    myCubit.modelData!.data![index]!.lectureSubject.toString(),
-                    myCubit.modelData!.data![index]!.lectureStartTime.toString(),
-                    myCubit.modelData!.data![index]!.lectureEndTime.toString(),
-                    myCubit.modelData!.data![index]!.lectureDate.toString(),
+                    lectureCubit.modelData!.data![index]!.lectureSubject.toString(),
+                    lectureCubit.modelData!.data![index]!.lectureStartTime.toString(),
+                    lectureCubit.modelData!.data![index]!.lectureEndTime.toString(),
+                    lectureCubit.modelData!.data![index]!.lectureDate.toString(),
 
                   );
                 }),

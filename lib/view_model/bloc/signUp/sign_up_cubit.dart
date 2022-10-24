@@ -41,20 +41,26 @@ class SignUpCubit extends Cubit<SignUpState> {
     'Grade 4',
   ];
 
-  void signUp(context) {
+  void signUp()  async{
     var data = {
       "email": email.text,
       "password": pass.text,
       "name": name.text,
-      "gender": "m",
       "phoneNumber": phone.text,
+      "gender": "m",
       "universityId": "1",
     };
-    DioHelper.postData(url: registerEndPoint, data: data).then(
+   await DioHelper.postData(url: registerEndPoint, data: data).then(
       (value) {
-        emit(SignUpSuccess());
-      },
-    );
+        print(value.data.toString());
+        modelData = SignUpModel.fromJson(value.data);
+        print(modelData!.message.toString());
+        emit(ODCIRegsterSucsessState(modelData!.message.toString()));
+      }).catchError((Error){
+      print(Error.toString());
+      emit(ODCIRegsterEroreState(Error.toString()));
+    });
+
   }
 
   void selectGender() {
@@ -102,6 +108,14 @@ class SignUpCubit extends Cubit<SignUpState> {
     isPassowrdShown = !isPassowrdShown;
     emit(ShowPassword());
   }
+  String Gender = 'm';
+  String SelectedGender = "Male";
+
+  void changeGender(String s) {
+    SelectedGender = s;
+    emit(ODCIChangeSelectedGenderState());
+  }
+
 
 
 }

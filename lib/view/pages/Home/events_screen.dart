@@ -20,6 +20,8 @@ class EventsScreen extends StatelessWidget {
 
           NotesCubit myCubit=NotesCubit.get(context) ;
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
                 appBar:
                 customAppBar("Events", context,noFilter :true,),

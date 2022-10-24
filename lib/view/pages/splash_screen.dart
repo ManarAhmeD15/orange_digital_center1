@@ -24,6 +24,8 @@ class SplashScreen extends StatelessWidget {
 
           SplashCubit myCubit =SplashCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
 
               body: Padding(

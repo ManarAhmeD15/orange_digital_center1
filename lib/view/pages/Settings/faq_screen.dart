@@ -20,7 +20,9 @@ class FaqScreen extends StatelessWidget {
           FaqCubit mycubit = FaqCubit.get(context);
 
           return MaterialApp(
-              home: Scaffold(
+            debugShowCheckedModeBanner: false,
+
+            home: Scaffold(
               appBar: AppBar(
               centerTitle: true,
               leading: IconButton(

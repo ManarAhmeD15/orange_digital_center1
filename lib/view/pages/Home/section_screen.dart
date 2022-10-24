@@ -21,6 +21,8 @@ class SectionScreen extends StatelessWidget {
         builder: (context, state) {
           SectionsCubit myCubit = SectionsCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               appBar:customAppBar("Sections", context,
                 pop1: "All Sections",

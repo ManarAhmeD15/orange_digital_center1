@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 
 import '../../../constans/token.dart';
 import '../../../model/lecture_model.dart';
+import '../../database/local/sharedPreferences.dart';
 import '../../database/network/dio_helper.dart';
 import '../../database/network/end_points.dart';
 
@@ -11,7 +12,8 @@ part 'lecture_state.dart';
 
 class LectureCubit extends Cubit<LectureState> {
   LectureCubit() : super(LectureInitial());
-  static LectureCubit get(context)=> BlocProvider.of(context);
+
+  static LectureCubit get(context) => BlocProvider.of(context);
 
   LectureModel ?modelData;
 
@@ -23,4 +25,5 @@ class LectureCubit extends Cubit<LectureState> {
         emit(LectureDataSuccess());
       }
     });
-  }}
+  }
+}

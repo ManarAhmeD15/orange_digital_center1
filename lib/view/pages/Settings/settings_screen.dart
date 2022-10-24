@@ -22,6 +22,8 @@ class SettingsScreen extends StatelessWidget {
         builder: (context, state) {
           SettingsCubit myCubit = SettingsCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               body: SafeArea(
                 child: Center(

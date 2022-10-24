@@ -17,6 +17,8 @@ class NewsScreen extends StatelessWidget {
         builder: (context, state) {
           NewsCubit myCubit = NewsCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
                 appBar: AppBar(
                   centerTitle: true,

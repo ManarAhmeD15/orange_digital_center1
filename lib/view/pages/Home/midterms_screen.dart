@@ -17,6 +17,8 @@ class MidetermsScreen extends StatelessWidget {
         builder: (context, state) {
           ExamsCubit myCubit = ExamsCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               appBar: customAppBar("Midterms",
                   context,

@@ -27,6 +27,8 @@ class HomeScreen extends StatelessWidget {
 
           HomeCubit myCubit = HomeCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               body: SafeArea(
                 child: Padding(

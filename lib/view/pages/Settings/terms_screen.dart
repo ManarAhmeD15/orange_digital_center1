@@ -17,6 +17,8 @@ class Terms extends StatelessWidget {
           builder: (context, state) {
             TermsCubit term =TermsCubit.get(context);
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
+
               home:
               Scaffold(
                 appBar: AppBar(

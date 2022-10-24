@@ -18,6 +18,8 @@ class SupportScreen extends StatelessWidget {
         builder: (context, state) {
           SupportCubit myCubit =SupportCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,

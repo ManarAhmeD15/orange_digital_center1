@@ -43,14 +43,10 @@ class LoginScreen extends StatelessWidget {
       },
         builder: (context, state) {
           // OBJECT
-
-          LoginCubit myCubit = LoginCubit.get(context);
-          SharedPreferences localStorage;
-           Future init() async{
-            localStorage =await SharedPreferences.getInstance();
-          }
-
+          LoginCubit myCubit =LoginCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               body: SafeArea(
                 child: SingleChildScrollView(

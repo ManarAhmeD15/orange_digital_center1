@@ -9,3 +9,18 @@ class GradeSuccess extends SignUpState {}
 class UniversitySuccess extends SignUpState {}
 class itemSelected extends SignUpState {}
 class ShowPassword extends SignUpState {}
+
+class ODCIRegsterLoadinState extends SignUpState {}
+
+class ODCIRegsterSucsessState extends SignUpState {
+  String message;
+  ODCIRegsterSucsessState(this.message);
+}
+
+class ODCIRegsterEroreState extends SignUpState {
+  String message;
+  ODCIRegsterEroreState(this.message);
+}
+
+
+class ODCIChangeSelectedGenderState extends SignUpState {}

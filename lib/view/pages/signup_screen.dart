@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:untitled/view/components/core/custom_text_form.dart';
 
 import '../../view_model/bloc/signUp/sign_up_cubit.dart';
@@ -18,6 +20,28 @@ class SignUp extends StatelessWidget {
       child: BlocConsumer<SignUpCubit, SignUpState>(
         listener: (context, state) {
           // TODO: implement listener
+      if (state is ODCIRegsterSucsessState) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+              (Route<dynamic> route) => false,
+        );
+
+        showTopSnackBar(
+          context,
+          CustomSnackBar.success(
+            message: "${state.message}",
+          ),
+        );
+      } else if (state is ODCIRegsterEroreState) {
+        showTopSnackBar(
+          context,
+          CustomSnackBar.error(
+            message: '${state.message}',
+          ),
+        );
+      }
+
         },
         builder: (context, state) {
           SignUpCubit myCubit = SignUpCubit.get(context);
@@ -33,6 +57,8 @@ class SignUp extends StatelessWidget {
           */
 
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               body: SafeArea(
                 child: SingleChildScrollView(
@@ -174,7 +200,33 @@ class SignUp extends StatelessWidget {
                             height: 15.0,
                           ),
                           customTextFormField(
-                              label: "Phone",
+                            label: "Confirm Password",
+                            type: TextInputType.visiblePassword,
+                            validator: (String value){
+                              if(value.isEmpty)
+                              {
+                                print("password must not be empty");
+                              }
+                              return null;
+
+                            },
+                            controller: myCubit.pass,
+                            isPasswordShown: myCubit.isPassowrdShown,
+                            suffix: IconButton(
+                                onPressed: (){
+                                  myCubit.ShowPass();
+                                },
+                                icon:(myCubit.isPassowrdShown)
+                                    ? Icon(Icons.visibility,color: Colors.deepOrange,) : Icon(Icons.visibility_off,
+                                  color: Colors.deepOrange,)),
+
+                          ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+
+                          customTextFormField(
+                              label: "Phone Number",
                               type: TextInputType.phone,
                               validator: (String value){
                                 if(value.isEmpty)
@@ -332,13 +384,7 @@ class SignUp extends StatelessWidget {
                             ),
                             child: TextButton(
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                                myCubit.signUp(context);
+                                myCubit.signUp();
                               },
                               child: Text(
                                 'Sign Up',

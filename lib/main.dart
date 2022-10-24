@@ -14,6 +14,7 @@ import 'package:untitled/view/pages/Home/section_screen.dart';
 import 'package:untitled/view/pages/Settings/settings_screen.dart';
 import 'package:untitled/view/pages/signup_screen.dart';
 import 'package:untitled/view/pages/splash_screen.dart';
+import 'package:untitled/view_model/database/local/sharedPreferences.dart';
 import 'package:untitled/view_model/database/network/dio_helper.dart';
 import 'package:untitled/view_model/database/network/end_points.dart';
 
@@ -21,6 +22,14 @@ import 'view/pages/Home/home_screen.dart';
 
 
 void main() async{
+
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await DioHelper.init();
+  await CashHelper.init();
+
+  String? token = CashHelper.getData(key: 'token');
+  return runApp(MyApp());
   /*
 
   await DioHelper.init();
@@ -52,7 +61,7 @@ void main() async{
 }
 
 
-/*
+
 
 class MyApp extends StatelessWidget
 {
@@ -60,18 +69,7 @@ class MyApp extends StatelessWidget
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-        centerTitle: true,
-        leading: Icon(
-        Icons.arrow_back,),
-    title: Text("Home"),
-    actions: [
-    Icon(Icons.arrow_back,
-    ),
-    ],
-    ),
-        ),
+      home:SplashScreen()
 
 
     );
@@ -79,7 +77,7 @@ class MyApp extends StatelessWidget
   }
 }
 
- */
+
 
 
 

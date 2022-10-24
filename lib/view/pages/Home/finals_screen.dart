@@ -18,6 +18,8 @@ class FinalsScreen extends StatelessWidget {
 
           ExamsCubit finalCubit = ExamsCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
+
             home: Scaffold(
               appBar:
 
